@@ -47,6 +47,7 @@ ifdef HAVE_IOS
 	$(APPLY) $(SRC)/lua/lua-ios-support.patch
 endif
 ifdef HAVE_WIN32
+	$(APPLY) $(SRC)/lua/lua-win-utf16-fopen.patch
 	cd $(UNPACK_DIR) && sed -i.orig -e 's/lua luac/lua.exe luac.exe/' Makefile
 endif
 	cd $(UNPACK_DIR)/src && sed -i.orig \
