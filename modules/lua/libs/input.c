@@ -201,13 +201,13 @@ static int vlclua_input_item_stats( lua_State *L )
     return 1;
 }
 
-static int vlclua_input_add_subtitle( lua_State *L )
+static int vlclua_input_add_subtitles( lua_State *L )
 {
     input_thread_t *p_input = vlclua_get_input_internal( L );
     if( !p_input )
         return luaL_error( L, "can't add subtitle: no current input" );
     if( !lua_isstring( L, 1 ) )
-        return luaL_error( L, "vlc.input.add_subtitle() usage: (url)" );
+        return luaL_error( L, "vlc.input.add_subtitles() usage: (path)" );
     const char *psz_url = luaL_checkstring( L, 1 );
     input_AddSubtitle( p_input, psz_url, false );
     vlc_object_release( p_input );
@@ -370,7 +370,7 @@ static int vlclua_input_item_set_meta( lua_State *L )
 static const luaL_Reg vlclua_input_reg[] = {
     { "is_playing", vlclua_input_is_playing },
     { "item", vlclua_input_item_get_current },
-    { "add_subtitle", vlclua_input_add_subtitle },
+    { "add_subtitles", vlclua_input_add_subtitles },
     { NULL, NULL }
 };
 
